@@ -122,7 +122,7 @@ static decode_state mpg_decode(void) {
 			
 			MPG123(m, getformat, m->h, &rate, &channels, &enc);
 			
-			LOG_INFO("setting track_start");
+			LOG_SQ_INFO("setting track_start");
 			LOCK_O_not_direct;
 			output.next_sample_rate = decode_newstream(rate, output.supported_rates);
 			IF_DSD( output.next_dop = false; )
@@ -164,7 +164,7 @@ static decode_state mpg_decode(void) {
 
 	if (ret == MPG123_DONE || (bytes == 0 && size == 0 && stream.state <= DISCONNECT)) {
 		UNLOCK_S;
-		LOG_INFO("stream complete");
+		LOG_SQ_INFO("stream complete");
 		return DECODE_COMPLETE;
 	}
 
@@ -219,7 +219,7 @@ static bool load_mpg() {
 	char *err;
 
 	if (!handle) {
-		LOG_INFO("dlerror: %s", dlerror());
+		LOG_SQ_INFO("dlerror: %s", dlerror());
 		return false;
 	}
 	
@@ -236,11 +236,11 @@ static bool load_mpg() {
 	m->mpg123_plain_strerror = dlsym(handle, "mpg123_plain_strerror");
 
 	if ((err = dlerror()) != NULL) {
-		LOG_INFO("dlerror: %s", err);		
+		LOG_SQ_INFO("dlerror: %s", err);		
 		return false;
 	}
 
-	LOG_INFO("loaded "LIBMPG);
+	LOG_SQ_INFO("loaded "LIBMPG);
 #endif
 
 	return true;
@@ -272,6 +272,6 @@ struct codec *register_mpg(void) {
 
 	m->use16bit = MPG123(m, feature, MPG123_FEATURE_OUTPUT_32BIT);
 
-	LOG_INFO("using mpg to decode mp3");
+	LOG_SQ_INFO("using mpg to decode mp3");
 	return &ret;
 }
