@@ -219,7 +219,7 @@ void ir_init(log_level level, char *lircrc) {
 			LOG_WARN("error reading config: %s", lircrc);
 		}
 		else {
-			LOG_DEBUG("loaded lircrc config: %s", lircrc);
+			LOG_SQ_DEBUG("loaded lircrc config: %s", lircrc);
 		}	
 
 		mutex_create(ir.mutex);
