@@ -194,7 +194,7 @@ bool test_open(const char *device, unsigned rates[], bool userdef_rates) {
 				wasapiInfo.version = 1;
 				wasapiInfo.flags = paWinWasapiExclusive;
 				outputParameters.hostApiSpecificStreamInfo = &wasapiInfo;
-				LOG_INFO("opening WASAPI device in exclusive mode");
+				LOG_SQ_INFO("opening WASAPI device in exclusive mode");
 			}
 		}
 	}
