@@ -140,7 +140,6 @@ static decode_state vorbis_decode(void) {
 
 	if (stream.state <= DISCONNECT && !_buf_used(streambuf)) {
 		UNLOCK_S;
-		LOG_SQ_INFO("end of stream");
 		return DECODE_COMPLETE;
 	}
 	
@@ -267,7 +266,14 @@ static decode_state vorbis_decode(void) {
 
 	} else if (n == 0) {
 
-		LOG_SQ_INFO("no frame decoded");
+		if (stream.state <= DISCONNECT) {
+			LOG_SQ_INFO("partial decode");
+			UNLOCK_O_direct;
+			UNLOCK_S;
+			return DECODE_COMPLETE;
+		} else {
+			LOG_SQ_INFO("no frame decoded");
+        }
 
 	} else if (n == OV_HOLE) {
 
