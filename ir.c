@@ -98,7 +98,7 @@ static struct {
 	{ "KEY_REWIND",     0x7689c03f, true  },
 	{ "KEY_NEXT",       0x7689a05f, true  },
 	{ "KEY_FORWARD",    0x7689a05f, true  },
-	{ "KEY_PAUSE",      0x768920df, true  },
+	{ "KEY_PAUSE",      0x768920df, false },
 	{ "KEY_PLAY",       0x768910ef, false },
 	{ "KEY_POWER",      0x768940bf, false },
 	{ "KEY_MUTE",       0x7689c43b, false },
@@ -125,6 +125,7 @@ static struct {
 	{ "KEY_DOWN",       0x7689b04f, true  },
 	{ "KEY_HOME",       0x768922dd, false },
 	{ "KEY_MEDIA_REPEAT", 0x768938c7, false },
+	{ "KEY_AGAIN",      0x768938c7, false },
 //	{ "KEY_TITLE",      0x76897887, false }, // Now Playing
 //	{ "KEY_TITLE",      0x7689a25d, false }, // Now Playing
 //	{ "KEY_TEXT",       0x7689f807, false }, // Size 
